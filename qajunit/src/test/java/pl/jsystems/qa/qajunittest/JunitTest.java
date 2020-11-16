@@ -19,8 +19,8 @@ public class JunitTest extends Configuration {
     @RepeatedTest(5)
     @Test
     public void firstJunitTest(){
-        assertTrue(5==2+3,"message");
-        assertFalse(5==2+2,"message");
+        assertEquals(2 + 3, 5, "message");
+        assertNotEquals(2 + 2, 5, "message");
         assertTrue(STRING_TESTOWY.contains("st"));
         assertTrue(STRING_TESTOWY.endsWith("wy"));
         assertEquals(STRING_TESTOWY, "stringTestowy");
@@ -31,7 +31,7 @@ public class JunitTest extends Configuration {
     public void secondJunitTest(){
         System.out.println(0.2*0.2);
         double result = new BigDecimal("0.2").multiply(new BigDecimal("0.2")).doubleValue();
-        assertTrue(result ==0.04);
+        assertEquals(result, 0.04);
     }
 
     @DisplayName("String tests")
@@ -43,10 +43,10 @@ public class JunitTest extends Configuration {
         String simpleString_2 = new String("simpleString");
         String simpleString_3 = new String("simpleString");
 
-        assertTrue(simpleString == "simpleString");
-        assertTrue(simpleString == simple);
-        assertFalse(simpleString == simpleString_2);
-        assertTrue(simpleString_2.equals(simpleString_3));
+        assertSame("simpleString", simpleString);
+        assertSame(simpleString, simple);
+        assertNotSame(simpleString, simpleString_2);
+        assertEquals(simpleString_3, simpleString_2);
     }
 
     @DisplayName("Google truth")
