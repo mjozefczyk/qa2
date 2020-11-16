@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+               git "https://github.com/mjozefczyk/qa2.git"
+            }
+        }
+        stage('run') {
+            steps {
+                sh "mvn clean test"
+            }
+        }
+    }
+}
