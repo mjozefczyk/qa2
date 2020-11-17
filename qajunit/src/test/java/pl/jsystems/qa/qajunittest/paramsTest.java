@@ -14,8 +14,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Tag("param")
-@Tag("junit")
+@Tags({@Tag("junit"),@Tag("param")})
 @DisplayName("Params test")
 public class paramsTest extends Configuration {
 

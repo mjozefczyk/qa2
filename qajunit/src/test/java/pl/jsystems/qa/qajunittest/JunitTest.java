@@ -17,7 +17,7 @@ public class JunitTest extends Configuration {
     private static final String STRING_TESTOWY="stringTestowy";
 
     @DisplayName("First")
-    @RepeatedTest(5)
+    //@RepeatedTest(5)
     @Test
     public void firstJunitTest(){
         assertEquals(2 + 3, 5, "message");
