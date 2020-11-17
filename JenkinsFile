@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters{
         choice(name: 'TAG', choices: ['junit','param','second','string','wordpress','word'], description: "tagi")
-        choice(name: 'EXTAG', choices: ['',''junit','param','second','string','wordpress','word'], description: "tagi")
+        choice(name: 'EXTAG', choices: ['','junit','param','second','string','wordpress','word'], description: "tagi")
     }
     stages {
         stage('checkout') {
