@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    parameters{
+        choice(name: 'TAG', choices: ['junit','param','second','string','wordpress','word'], description: "tagi")
+        choice(name: 'EXTAG', choices: ['junit','param','second','string','wordpress','word'], description: "tagi")
+    }
     stages {
         stage('checkout') {
             steps {
@@ -8,7 +12,7 @@ pipeline {
         }
         stage('run') {
             steps {
-                sh "mvn clean test -Dgroups=${params.groups}"
+                sh "mvn clean test -Dgroups=${params.TAG} -DexcludedGroups=${params.EXTAG}"
             }
         }
 
