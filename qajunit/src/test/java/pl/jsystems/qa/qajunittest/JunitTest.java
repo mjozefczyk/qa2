@@ -2,6 +2,7 @@ package pl.jsystems.qa.qajunittest;
 
 import org.junit.jupiter.api.*;
 import pl.jsystems.qa.Configuration;
+import pl.jsystems.qa.junit.GamePlay;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -84,5 +85,17 @@ public class JunitTest extends Configuration {
             assertThat(result).containsAnyIn(expected);
             assertTrue((result.containsAll(expected)));
         }
+
+        @DisplayName("assert throw ")
+        @Test
+        public void assertThrow() {
+            GamePlay gamePlay = new GamePlay();
+            assertThrows(IllegalArgumentException.class, 
+                    () -> {
+                        gamePlay.play(0);
+                    }
+                    );
+        }
+
     }
 }
