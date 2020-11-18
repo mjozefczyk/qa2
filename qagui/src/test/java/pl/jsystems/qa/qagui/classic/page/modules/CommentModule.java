@@ -6,15 +6,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pl.jsystems.qa.qagui.classic.page.BasePage;
 
-public class Comment extends BasePage {
+public class CommentModule extends BasePage {
 
-    public Comment(WebDriver driver) {
+    public CommentModule(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
 
-    @FindBy(css = ".button.form-button is-primary")
+    @FindBy(css = ".button.form-button.is-primary")
     public WebElement saveSettingsButton;
 
     @FindBy(css = ".notification-settings-form-stream:nth-child(2) ul li:nth-child(1) input")
