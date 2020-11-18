@@ -1,4 +1,6 @@
 package pl.jsystems.qa.qagui.classic;
+
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,10 +10,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.jsystems.qa.qagui.classic.functional.LoginFunction;
-import pl.jsystems.qa.qagui.classic.page.LoginPage;
-import pl.jsystems.qa.qagui.classic.page.MainUserPage;
-import pl.jsystems.qa.qagui.classic.page.MainWordpressPage;
-import pl.jsystems.qa.qagui.classic.page.UserProfilePage;
+import pl.jsystems.qa.qagui.classic.page.*;
+import pl.jsystems.qa.qagui.classic.page.modules.Comment;
 import pl.jsystems.qa.qagui.config.GuiConfig;
 
 import java.net.URISyntaxException;
@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 import static com.google.common.truth.Truth.assertThat;
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tag("frontend")
 @DisplayName("Frontend test")
@@ -37,7 +38,7 @@ public class FrontendTest {
         try {
             System.setProperty("webdriver.chrome.driver", Paths.get(getClass().getClassLoader().getResource("drivers/chromedriver.exe").toURI()).toFile().getAbsolutePath());
             System.setProperty("webdriver.gecko.driver", Paths.get(getClass().getClassLoader().getResource("drivers/geckodriver.exe").toURI()).toFile().getAbsolutePath());
-//            System.setProperty("webdriver.edge.driver", Paths.get(getClass().getClassLoader().getResource("drivers/msedgedriver.exe").toURI()).toFile().getAbsolutePath());
+            //System.setProperty("webdriver.edge.driver", Paths.get(getClass().getClassLoader().getResource("driver/msedgedriver.exe").toURI()).toFile().getAbsolutePath());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -52,18 +53,18 @@ public class FrontendTest {
 
     }
 
-    @Tag("Front")
+    @Tag("login")
     @DisplayName("Login test")
     @Test
     public void loginTest() {
-        driver.get(GuiConfig.BASE_URL);
+        driver.get("https://wordpress.com/");
+
         LoginFunction loginFunction = new LoginFunction(driver);
         loginFunction.login();
 
         MainUserPage mainUserPage = new MainUserPage(driver);
-        mainUserPage.userAvatar.click();
 
-        String welcomeText = mainUserPage.userName.getText();
+        String welcomeText = mainUserPage.welcomeText.getText();
 
         assertThat(welcomeText).isEqualTo("Witaj w Czytniku");
 
@@ -83,14 +84,15 @@ public class FrontendTest {
         UserProfilePage userProfilePage = new UserProfilePage(driver);
         String userName = userProfilePage.userNamePanel.getText();
 
-        assertThat(userName).isEqualTo("testautomation112020");
+        assertThat(userName).isEqualTo(GuiConfig.LOGIN);
 
     }
 
-    @DisplayName("Check display button")
+    @DisplayName("Check save button on user profile page.")
     @Test
-    public void checkButton() {
-        driver.get("https://wordpress.com/");
+    public void saveButton() {
+        driver.get(GuiConfig.BASE_URL);
+
         LoginFunction loginFunction = new LoginFunction(driver);
         loginFunction.login();
 
@@ -98,25 +100,48 @@ public class FrontendTest {
         mainUserPage.userAvatar.click();
 
         UserProfilePage userProfilePage = new UserProfilePage(driver);
-        assertThat(userProfilePage.userNamePanel.isDisplayed());
-        assertThat(userProfilePage.userNamePanel.isDisplayed());
-        assertThat(userProfilePage.notificationButton.isDisplayed());
+
+        assertTrue(userProfilePage.saveButton.isDisplayed());
+        assertFalse(userProfilePage.saveButton.isEnabled());
+
     }
 
-    @DisplayName("Check selected elements")
+    @Disabled
+    @DisplayName("Check selected element.")
     @Test
     public void selectedElement() {
-        driver.get("https://wordpress.com/");
+        driver.get(GuiConfig.BASE_URL);
+
         LoginFunction loginFunction = new LoginFunction(driver);
         loginFunction.login();
 
         MainUserPage mainUserPage = new MainUserPage(driver);
-        mainUserPage.userAvatar.click();
+//        mainUserPage.userAvatar.click();
 
-        UserProfilePage userProfilePage = new UserProfilePage(driver);
-        assertThat(userProfilePage.userNamePanel.isDisplayed());
-        assertThat(userProfilePage.userNamePanel.isDisplayed());
-        assertThat(userProfilePage.notificationButton.isDisplayed());
+//        UserProfilePage userProfilePage = new UserProfilePage(driver);
+
+//        try {
+//            sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+//        userProfilePage.notificationLabel.click();
+
+
+        try {
+            sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        NotificationUserPage notificationUserPage = new NotificationUserPage(driver);
+//        notificationUserPage.commentsLabel.click();
+//
+//        Comment comment = new Comment(driver);
+//
+//        assertFalse(comment.saveSettingsButton.isEnabled());
+
+
     }
 
     @AfterEach

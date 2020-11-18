@@ -1,10 +1,12 @@
 pipeline {
     agent any
-    parameters{
-        choice(name: 'ENVIROMENT', choices: ['dev','test','stage','sandbox'], description: "srodowiska")
-        choice(name: 'TAG', choices: ['front','junit','param','second','string','wordpress','word'], description: "tagi")
-        choice(name: 'EXTAG', choices: ['','front','junit','param','second','string','wordpress','word'], description: "tagi")
+
+    parameters {
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'test', 'stage', 'sandbox'], description: 'Choose environment.')
+        choice(name: 'TAG', choices: ['junit', 'paramTest', 'noparamTest', 'sanity', 'second', 'string', 'wordpress', 'word', "frontend", "login"], description: 'Choose tag.')
+        choice(name: 'EXTAG', choices: ['','junit', 'paramTest', 'noparamTest', 'sanity', 'second', 'string', 'wordpress', 'word'], description: 'Choose tag.')
     }
+
     stages {
         stage('checkout') {
             steps {
@@ -13,7 +15,7 @@ pipeline {
         }
         stage('run') {
             steps {
-                sh "mvn clean test -Dgroups=${params.TAG} -DexcludedGroups=${params.EXTAG} -DENVIROMENT=${params.ENVIROMENT}"
+                sh "mvn clean test -Dgroups=${params.TAG} -DexcludedGroups=${params.EXTAG} -DENVIRONMENT=${params.ENVIRONMENT}"
             }
         }
 
@@ -27,7 +29,7 @@ pipeline {
                          [key: 'allure.tests.management.pattern', value: 'http://tms.company.com/%s'],
                          ],
                          reportBuildPolicy: 'ALWAYS',
-                         results: [[path: 'qajunit/target/allure-results']]
+                         results: [[path: 'qajunit/target/allure-results'], [path: 'qagui/target/allure-results']]
                          ])
             }
         }

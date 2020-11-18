@@ -21,7 +21,9 @@ public class LoginPage extends BasePage  {
     public WebElement logginButton;
 //    public WebElement logginButton = driver.findElement(By.cssSelector(".button.form-button.is-primary"));
 
-    @FindBy(id = "password")
+    public static final String password = "password";
+
+    @FindBy(id = password)
     public WebElement passwordInput;
 //    public WebElement passwordInput = driver.findElement(By.id("password"));
 

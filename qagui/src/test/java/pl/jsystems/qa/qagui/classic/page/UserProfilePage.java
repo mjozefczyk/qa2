@@ -18,8 +18,10 @@ public class UserProfilePage extends BasePage  {
     public WebElement userNamePanel;
 //    public WebElement userNamePanel = driver.findElement(By.className("profile-gravatar__user-display-name"));
 
+    @FindBy(css = ".button.form-button.is-primary")
+    public WebElement saveButton;
 
-    @FindBy(xpath = "//*[text()='Ustawienia powiadomień']")
-    public WebElement notificationButton;
+    @FindBy(css = "a[href=\"/me/notifications\"] .sidebar__menu-link-text.menu-link-text")
+    public WebElement notificationLabel;
 
 }

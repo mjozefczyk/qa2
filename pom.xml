@@ -14,6 +14,7 @@
         <module>qagui</module>
     </modules>
 
+
     <properties>
         <junit-jupiter.version>5.7.0</junit-jupiter.version>
         <junit-platform-launcher.version>1.7.0</junit-platform-launcher.version>
@@ -26,6 +27,9 @@
         <jackson-module-jaxb-annotations>2.11.3</jackson-module-jaxb-annotations>
         <allure-maven>2.10.0</allure-maven>
         <allure>2.13.6</allure>
+        <selenium-java>3.141.59</selenium-java>
+        <guava>27.1-jre</guava>
+        <typesafe.config>1.4.1</typesafe.config>
     </properties>
 
     <dependencyManagement>
@@ -117,19 +121,27 @@
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-java</artifactId>
-                <version>3.141.59</version>
+                <version>${selenium-java}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-api</artifactId>
-                <version>3.141.59</version>
+                <version>${selenium-java}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava}</version>
+            </dependency>
+
             <!-- https://mvnrepository.com/artifact/com.typesafe/config -->
             <dependency>
                 <groupId>com.typesafe</groupId>
                 <artifactId>config</artifactId>
-                <version>1.4.1</version>
+                <version>${typesafe.config}</version>
             </dependency>
 
         </dependencies>

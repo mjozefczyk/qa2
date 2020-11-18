@@ -1,5 +1,6 @@
 package pl.jsystems.qa.qagui.classic.functional;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,13 +28,8 @@ public class LoginFunction {
         loginPage.loginInput.sendKeys(GuiConfig.LOGIN);
         loginPage.logginButton.click();
 
-//        try {
-//            sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOf(loginPage.passwordInput));
+        loginPage.waitForVisibilityOfElement(By.id(LoginPage.password), 15);
+
         loginPage.passwordInput.clear();
         loginPage.passwordInput.click();
         loginPage.passwordInput.sendKeys(GuiConfig.PASSWORD);

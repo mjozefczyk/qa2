@@ -21,9 +21,4 @@ public class MainUserPage extends BasePage  {
     public WebElement userAvatar;
 //    public WebElement userAvatar = driver.findElement(By.cssSelector(".masterbar__item.masterbar__item-me"));
 
-    @FindBy(css = ".empty-content__title")
-    public WebElement userName;
-
-
-
 }
