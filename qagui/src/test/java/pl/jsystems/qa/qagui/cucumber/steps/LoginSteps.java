@@ -47,4 +47,8 @@ public class LoginSteps {
         assertTrue(mainUserPage.findButton.isEnabled());
         mainUserPage.findButton.click();
     }
+
+    @Then("User go to search panel")
+    public void userGoToSearchPanel() {
+    }
 }

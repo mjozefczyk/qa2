@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources",
         glue = "classpath:pl.jsystems.qa.qagui.cucumber",
-        plugin = {"pretty","html:target/cucumber.html","json:target/cucumber.json",
+        plugin = {"pretty","html:target/cucumber/cucumber.html","json:target/cucumber.json",
                 "junit:target/cucumber.xml","rerun:target/rerun.txt"},
         tags= "@login"
 )
