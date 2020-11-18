@@ -77,7 +77,6 @@ public class FrontendTest extends ConfigFrontEnd {
 
     }
 
-    @RepeatedTest(10)
     @DisplayName("Check selected element.")
     @Test
     public void selectedElement() throws InterruptedException {
