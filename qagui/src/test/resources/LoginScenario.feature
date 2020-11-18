@@ -11,4 +11,4 @@ Feature: User login
   Scenario: Login2
     Given User start on main page
     When User logs to user panel
-    Then User can modify user profile
+    Then User check and click find button

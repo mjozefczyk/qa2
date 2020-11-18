@@ -12,6 +12,7 @@ import pl.jsystems.qa.qagui.config.GuiConfig;
 import pl.jsystems.qa.qagui.cucumber.ConfigBaseStep;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class LoginSteps {
 
@@ -37,5 +38,13 @@ public class LoginSteps {
         MainUserPage mainUserPage = new MainUserPage(driver);
         String welcomeText = mainUserPage.welcomeText.getText();
         assertThat(welcomeText).isEqualTo("Witaj w Czytniku");
+    }
+
+    @Then("User check and click find button")
+    public void userCheckButton() {
+        MainUserPage mainUserPage = new MainUserPage(driver);
+        assertTrue(mainUserPage.findButton.isDisplayed());
+        assertTrue(mainUserPage.findButton.isEnabled());
+        mainUserPage.findButton.click();
     }
 }
