@@ -5,6 +5,7 @@ pipeline {
         choice(name: 'ENVIRONMENT', choices: ['dev', 'test', 'stage', 'sandbox'], description: 'Choose environment.')
         choice(name: 'TAG', choices: ['junit', 'paramTest', 'noparamTest', 'sanity', 'second', 'string', 'wordpress', 'word', "frontend", "login", "ActionTest","Windows"], description: 'Choose tag.')
         choice(name: 'EXTAG', choices: ['','junit', 'paramTest', 'noparamTest', 'sanity', 'second', 'string', 'wordpress', 'word', "ActionTest","Windows"], description: 'Choose tag.')
+        choice(name: 'CUCUMBER_TAG', choices: ['','@BDD', '@login', '@wordpress'], description: 'Choose cucumber tag.')
         choice(name: 'BROWSER', choices: ['chrome','firefox', 'edge'], description: 'Choose browser.')
         choice(name: 'MACHINE', choices: ['remote','local'], description: 'Choose machine.')
         string(name: 'REMOTE_URL', defaultValue: 'http://192.168.43.174:4444/wd/hub', description: 'Remote selenium grid url.')
@@ -18,7 +19,7 @@ pipeline {
         }
         stage('run') {
             steps {
-                sh "mvn clean test -Dgroups=${params.TAG} -DexcludedGroups=${params.EXTAG} -DENVIRONMENT=${params.ENVIRONMENT} -DBROWSER=${params.BROWSER} -DMACHINE=${params.MACHINE} -DREMOTE_URL=${params.REMOTE_URL}"
+                sh "mvn clean test -Dgroups=${params.TAG} -DexcludedGroups=${params.EXTAG} -DENVIRONMENT=${params.ENVIRONMENT} -DBROWSER=${params.BROWSER} -DMACHINE=${params.MACHINE} -DREMOTE_URL=${params.REMOTE_URL} -Dcucumber.options=\"--tags ${params.CUCUMBER_TAG}\""
             }
         }
 
