@@ -1,5 +1,6 @@
 package pl.jsystems.qa.qagui.classic.functional;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +23,12 @@ public class ConfigFrontEnd {
 
     protected WebDriver driver;
 
+    @BeforeAll
+    public static void setUpAll(){
+        WebDriverManager.chromedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
+    }
+
     @BeforeEach
     public void setUpEach() {
 
@@ -41,13 +48,13 @@ public class ConfigFrontEnd {
     }
 
     private void setLocal() {
-        try {
-            System.setProperty("webdriver.chrome.driver", Paths.get(getClass().getClassLoader().getResource("drivers/chromedriver.exe").toURI()).toFile().getAbsolutePath());
-            System.setProperty("webdriver.gecko.driver", Paths.get(getClass().getClassLoader().getResource("drivers/geckodriver.exe").toURI()).toFile().getAbsolutePath());
-            //System.setProperty("webdriver.edge.driver", Paths.get(getClass().getClassLoader().getResource("driver/msedgedriver.exe").toURI()).toFile().getAbsolutePath());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.setProperty("webdriver.chrome.driver", Paths.get(getClass().getClassLoader().getResource("drivers/chromedriver.exe").toURI()).toFile().getAbsolutePath());
+//            System.setProperty("webdriver.gecko.driver", Paths.get(getClass().getClassLoader().getResource("drivers/geckodriver.exe").toURI()).toFile().getAbsolutePath());
+//            System.setProperty("webdriver.edge.driver", Paths.get(getClass().getClassLoader().getResource("driver/msedgedriver.exe").toURI()).toFile().getAbsolutePath());
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private WebDriver setWebDriver() {

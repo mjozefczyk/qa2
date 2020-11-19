@@ -12,8 +12,7 @@ import org.junit.runner.RunWith;
         plugin = { "pretty", "summary", "html:target/cucumber/report.html", "json:target/cucumber.json",
                 "junit:target/cucumber.xml",
                 "rerun:target/rerun.txt"
-        },
-        tags= "@login"
+        }
 )
 public class RunTest {
 
