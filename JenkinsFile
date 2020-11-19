@@ -35,7 +35,7 @@ pipeline {
                          reportBuildPolicy: 'ALWAYS',
                          results: [[path: 'qajunit/target/allure-results'], [path: 'qagui/target/allure-results']]
                          ])
-                cucumber buildStatus: 'UNSTABLE', failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*cucumber.json', jsonReportDirectory: 'qagui/target/cucumber.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
+                cucumber buildStatus: 'UNSTABLE', failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/cucumber.json', jsonReportDirectory: 'qagui/target/', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
             }
         }
 }
