@@ -13,7 +13,7 @@ pipeline {
         choice(name: 'CUCUMBER_TAG', choices: ['@BDD', 'not @BDD', '@login', 'not @login', '@wordpress', 'not @wordpress', '@userpanel', 'not @userpanel', '@search', 'not @search', '@website', 'not @website', '@website_2', 'not @website_2', '@website_3', 'not @website_3'], description: 'Choose cucumber tag.')
         choice(name: 'BROWSER', choices: ['chrome','firefox', 'edge'], description: 'Choose browser type.')
         choice(name: 'MACHINE', choices: ['remote','local'], description: 'Choose machine type.')
-        string(name: 'REMOTE_URL', defaultValue: 'http://172.20.192.1:4444/wd/hub', description: 'Remote selenium grid url.')
+        string(name: 'REMOTE_URL', defaultValue: 'http://192.168.43.174:4444//wd/hub', description: 'Remote selenium grid url.')
     }
 
     stages {
