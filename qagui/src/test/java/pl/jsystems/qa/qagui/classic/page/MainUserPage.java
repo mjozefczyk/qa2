@@ -1,4 +1,5 @@
 package pl.jsystems.qa.qagui.classic.page;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,8 +23,5 @@ public class MainUserPage extends BasePage  {
 
     @FindBy(css = "a[data-tip-target=\"reader\"]")
     public WebElement readerLabel;
-
-    @FindBy(css = ".empty-content__action.button.is-primary")
-    public WebElement findButton;
 
 }

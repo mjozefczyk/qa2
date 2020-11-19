@@ -3,7 +3,8 @@ package pl.jsystems.qa.qagui.classic;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pl.jsystems.qa.qagui.classic.functional.ConfigFrontEnd;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.jsystems.qa.qagui.classic.functional.LoginFunction;
 import pl.jsystems.qa.qagui.classic.page.*;
 import pl.jsystems.qa.qagui.classic.page.modules.CommentModule;
@@ -18,11 +19,35 @@ import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Tag("frontend")
+@Tag("Frontend")
 @DisplayName("Frontend test")
 public class FrontendTest extends ConfigFrontEnd {
+//
+//    private WebDriver driver;
 
-    //private WebDriver driver;
+//    @BeforeAll
+//    public static void setUpBefore() {
+//    }
+
+//    @BeforeEach
+//    public void setUpEach() {
+//        try {
+//            System.setProperty("webdriver.chrome.driver", Paths.get(getClass().getClassLoader().getResource("driver/chromedriver.exe").toURI()).toFile().getAbsolutePath());
+//            System.setProperty("webdriver.gecko.driver", Paths.get(getClass().getClassLoader().getResource("driver/geckodriver.exe").toURI()).toFile().getAbsolutePath());
+//            System.setProperty("webdriver.edge.driver", Paths.get(getClass().getClassLoader().getResource("driver/msedgedriver.exe").toURI()).toFile().getAbsolutePath());
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//        driver = new ChromeDriver();
+////        driver = new FirefoxDriver();
+////        driver = new SafariDriver();
+////        driver = new EdgeDriver();
+//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+//        driver.manage().deleteAllCookies();
+//        driver.manage().window().maximize();
+//
+//    }
 
     @Tag("login")
     @DisplayName("Login test")
@@ -32,13 +57,9 @@ public class FrontendTest extends ConfigFrontEnd {
 
         LoginFunction loginFunction = new LoginFunction(driver);
         loginFunction.login();
-
         MainUserPage mainUserPage = new MainUserPage(driver);
-
         String welcomeText = mainUserPage.welcomeText.getText();
-
         assertThat(welcomeText).isEqualTo("Witaj w Czytniku");
-
     }
 
     @DisplayName("Check user")
@@ -50,6 +71,8 @@ public class FrontendTest extends ConfigFrontEnd {
         loginFunction.login();
 
         MainUserPage mainUserPage = new MainUserPage(driver);
+
+        mainUserPage.waitForElementToBeClickable(mainUserPage.userAvatar);
         mainUserPage.userAvatar.click();
 
         UserProfilePage userProfilePage = new UserProfilePage(driver);
@@ -77,6 +100,7 @@ public class FrontendTest extends ConfigFrontEnd {
 
     }
 
+    @RepeatedTest(10)
     @DisplayName("Check selected element.")
     @Test
     public void selectedElement() throws InterruptedException {
@@ -188,5 +212,11 @@ public class FrontendTest extends ConfigFrontEnd {
         assertTrue(commentModule.likeRingCheckbox.isSelected());
 
     }
+
+//    @AfterEach
+//    public void tearDown() {
+//        driver.quit();
+//    }
+
 
 }
