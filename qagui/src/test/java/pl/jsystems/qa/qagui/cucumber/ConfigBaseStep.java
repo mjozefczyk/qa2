@@ -41,7 +41,7 @@ public class ConfigBaseStep {
         } else {
             status = "(✖╭╮✖)";
 //            status = "-------------";
-            //scenario.attach(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES),"images/png");
+            scenario.attach(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES),"images/png", scenario.getName());
             scenario.log("Scenario failed");
         }
         System.out.println("\n"+status+" End of: " + scenario.getName() + " scenario.");
