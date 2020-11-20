@@ -12,8 +12,8 @@
     <modules>
         <module>qajunit</module>
         <module>qagui</module>
+        <module>qaapi</module>
     </modules>
-
 
     <properties>
         <junit-jupiter.version>5.7.0</junit-jupiter.version>
@@ -31,6 +31,9 @@
         <guava>27.1-jre</guava>
         <typesafe.config>1.4.1</typesafe.config>
         <cucumber>6.9.0</cucumber>
+        <junit>4.13</junit>
+        <webdrivermanager>4.2.2</webdrivermanager>
+        <rest-assured>4.3.2</rest-assured>
     </properties>
 
     <dependencyManagement>
@@ -168,14 +171,20 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.13</version>
+                <version>${junit}</version>
                 <scope>test</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
             <dependency>
                 <groupId>io.github.bonigarcia</groupId>
                 <artifactId>webdrivermanager</artifactId>
-                <version>4.2.2</version>
+                <version>${webdrivermanager}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>${rest-assured}</version>
             </dependency>
 
         </dependencies>
@@ -219,6 +228,9 @@
                                 </name>
                             </property>
                         </systemProperties>
+                        <includes>
+                            <include>**/*Test.java</include>
+                        </includes>
                     </configuration>
                 </plugin>
 
