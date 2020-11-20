@@ -121,12 +121,29 @@ public class ApiTest {
     public void getSimpleUserById() {
         //given
         long id = 1;
+        Response response = UserService.returnUserResponse();
+        List<User> users = UserService.getUsers();
 
         //when
         SimpleUser user = UserService.getUser(id);
 
         assertThat(user.name).isEqualTo("Piotr");
         assertThat(user.surname).isEqualTo("Kowalski");
+    }
+
+    @DisplayName("Get authors")
+    @Test
+    public void getAutors() {
+
+        Response response = RestAssured.given().get("https://fakerestapi.azurewebsites.net/api/v1/Authors").andReturn();
+        response.then()
+                .body("[0].id", notNullValue())
+                .body("[0].id", equalTo(1))
+                .body("[0].idBook", notNullValue())
+                .body("[0].idBook", equalTo(1))
+                .body("[0].firstName", equalTo("First Name 1"))
+                .body("[0].lastName", equalTo("Last Name 1"))
+                .statusCode(200);
     }
 
     @DisplayName("Get user by queryParam and pathVariable.")
